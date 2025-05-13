@@ -1,8 +1,8 @@
-const express = require('express');
-const cors = require('cors');
-const { ChatOpenAI } = require('langchain/chat_models/openai');
-const { ChatPromptTemplate } = require('langchain/prompts');
-const dotenv = require('dotenv');
+import express from 'express';
+import cors from 'cors';
+import { ChatOpenAI } from 'langchain/chat_models/openai';
+import { ChatPromptTemplate } from 'langchain/prompts';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -64,4 +64,4 @@ app.listen(port, () => {
   console.log(`Agentes de Conversão API running on port ${port}`);
 });
 
-module.exports = app;
+export default app;

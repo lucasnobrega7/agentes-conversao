@@ -41,15 +41,24 @@ Agentes de Conversão é uma aplicação que combina uma API de processamento de
 
 ## Implantação no Railway
 
-1. Configure seu projeto no Railway
-2. Adicione as variáveis de ambiente necessárias:
-   - `OPENAI_API_KEY`
-   - `CHAINLIT_AUTH_SECRET`
-   - `CHAINLIT_API_KEY`
-   - `CHAINLIT_URL`
-3. Implante a aplicação usando:
+1. Acesse a [plataforma Railway](https://railway.app) e faça login na sua conta
+2. Crie um novo projeto clicando em "New Project"
+3. Selecione "Deploy from GitHub repo"
+4. Conecte ao repositório GitHub dos Agentes de Conversão
+5. Configure as variáveis de ambiente necessárias:
+   - `OPENAI_API_KEY`: Sua chave da API OpenAI
+   - `CHAINLIT_AUTH_SECRET`: Uma string aleatória para autenticação (ex: use `openssl rand -hex 32` para gerar)
+   - `CHAINLIT_URL`: https://agentesdeconversao.com.br
+   - `API_URL`: https://agentesdeconversao.com.br
+   - `NODE_ENV`: production
+   - `PORT`: 3000
+   - `CHAINLIT_SERVER_PORT`: 8000
+6. Configure um domínio personalizado em "Settings > Domains"
+7. Alternativa via CLI (após login):
    ```
-   railway up
+   cd agentes-conversao
+   railway link # Para conectar ao projeto criado na plataforma web
+   railway up # Para fazer o deploy
    ```
 
 ## Funcionalidades

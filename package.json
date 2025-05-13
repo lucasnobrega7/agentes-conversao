@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "concurrently \"node src/api.js\" \"chainlit run app.py --host 0.0.0.0 --port 8000\"",
     "build": "echo 'Building assets...'",
-    "start": "node src/api.js & chainlit run app.py --host 0.0.0.0 --port 8000",
+    "start": "concurrently \"node src/api.js\" \"chainlit run app.py --host 0.0.0.0 --port 8000\"",
+    "start-api": "node src/api.js",
+    "start-chainlit": "chainlit run app.py --host 0.0.0.0 --port 8000",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\""
   },

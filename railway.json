@@ -2,7 +2,7 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "npm run build"
+    "buildCommand": "npm install && pip install -r requirements.txt"
   },
   "deploy": {
     "numReplicas": 1,
@@ -15,6 +15,8 @@
   },
   "variables": {
     "NODE_ENV": "production",
-    "PORT": "3000"
+    "PORT": "3000",
+    "API_URL": "https://agentesdeconversao.com.br",
+    "CHAINLIT_SERVER_PORT": "8000"
   }
 }
