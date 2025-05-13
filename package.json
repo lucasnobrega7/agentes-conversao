@@ -12,24 +12,24 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\""
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "langchain": "^0.1.4",
-    "openai": "^4.11.0",
-    "axios": "^1.6.2",
-    "concurrently": "^8.2.2",
-    "tailwindcss": "^3.3.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
+    "axios": "^1.6.2",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "langchain": "^0.1.37",
+    "openai": "^4.98.0",
+    "tailwindcss": "^3.3.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.16",
     "eslint": "^8.55.0",
-    "prettier": "^3.1.0",
-    "nodemon": "^3.0.1",
+    "nodemon": "^3.1.10",
     "postcss": "^8.4.32",
-    "autoprefixer": "^10.4.16"
+    "prettier": "^3.1.0"
   },
   "description": "Plataforma para criação de agentes de IA personalizados para aumento de conversões e automação de processos.",
   "main": "index.js",

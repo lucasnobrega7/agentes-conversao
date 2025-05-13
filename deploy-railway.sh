@@ -1,59 +1,31 @@
 #!/bin/bash
 
-echo "Script de Deploy do Agentes de Conversão para Railway"
-echo "===================================================="
-echo ""
+# Script para deploy no Railway
+echo "Iniciando deploy no Railway"
+
+# Verificar se está logado no Railway
+railway whoami
+if [ $? -ne 0 ]; then
+  echo "Falha ao verificar usuário do Railway. Tente fazer login com: railway login"
+  exit 1
+fi
 
 # Verificar se o Railway CLI está instalado
 if ! command -v railway &> /dev/null; then
-    echo "Railway CLI não encontrado. Instalando..."
-    npm i -g @railway/cli
+  echo "Railway CLI não encontrado. Instale com: npm i -g @railway/cli"
+  exit 1
 fi
 
-# Login no Railway (caso necessário)
-echo "Verificando login no Railway..."
-if ! railway whoami &> /dev/null; then
-    echo "Por favor, faça login no Railway..."
-    railway login
-fi
+# Vincular ao projeto Railway
+echo "Vinculando ao projeto Railway..."
+railway link -p 7fcd408b-255a-4b4e-9ec1-0fe17fcd10a6 -e 5c57c3b8-b661-4b17-887d-31f596cd6fe0
 
-# Listar projetos disponíveis
-echo "Projetos disponíveis no Railway:"
-railway list
+# Enviar as alterações para o GitHub
+echo "Enviando alterações para o GitHub..."
+git add .
+git commit -m "Update for Railway deployment"
+git push origin main
 
-# Solicitar projeto para link
-echo ""
-echo "Digite o nome exato do projeto para vincular (ex: agentesdeconversao):"
-read project_name
-
-# Vincular ao projeto
-echo "Vinculando ao projeto $project_name..."
-railway link
-
-# Configurar variáveis de ambiente
-echo ""
-echo "Configurando variáveis de ambiente..."
-echo "Digite sua OPENAI_API_KEY:"
-read openai_key
-
-# Gerar um segredo aleatório para autenticação
-auth_secret=$(openssl rand -hex 16)
-echo "CHAINLIT_AUTH_SECRET gerado automaticamente: $auth_secret"
-
-# Configurar variáveis
-railway variables set OPENAI_API_KEY="$openai_key"
-railway variables set CHAINLIT_AUTH_SECRET="$auth_secret"
-railway variables set CHAINLIT_URL="https://agentesdeconversao.com.br"
-railway variables set API_URL="https://agentesdeconversao.com.br"
-railway variables set NODE_ENV="production"
-railway variables set PORT="3000"
-railway variables set CHAINLIT_SERVER_PORT="8000"
-
-# Fazer deploy
-echo ""
-echo "Iniciando deploy..."
-railway up
-
-echo ""
-echo "Deploy concluído! Verifique o status no dashboard do Railway."
-echo "Acesse: https://railway.app/dashboard"
+echo "Deployment iniciado. O Railway irá fazer o build e deploy automaticamente a partir do GitHub."
+echo "Acesse https://railway.app/dashboard para monitorar o progresso."
+echo "O site estará disponível em https://agentesdeconversao.com.br após o deploy."
