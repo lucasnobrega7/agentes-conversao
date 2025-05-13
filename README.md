@@ -1,119 +1,68 @@
 # Agentes de Conversão
 
-Plataforma para criação de agentes de IA personalizados para aumento de conversões e automação de processos.
+Uma plataforma inteligente para automação de interações e otimização de processos de conversão usando IA.
 
-## Tecnologias Utilizadas
+## Visão Geral
 
-- **Frontend:** Next.js 14, React 18+, Tailwind CSS 3.4.0
-- **UI/UX:** Design minimalista com foco em usabilidade
-- **Estado:** Zustand + React Query
-- **Linguagem:** TypeScript 5.3+
-- **Deployment:** Railway com domínio personalizado (dash.agentesdeconversao.com.br)
+Agentes de Conversão é uma aplicação que combina uma API de processamento de IA com uma interface de chat interativa. A plataforma permite criar, gerenciar e implantar agentes inteligentes personalizados para melhorar as taxas de conversão e automatizar processos.
 
-## Primeiros Passos
+## Tecnologias
 
-### Pré-requisitos
+- **Backend**: Express.js, LangChain, OpenAI
+- **Frontend**: Chainlit (interface de chat Python)
+- **Implantação**: Railway
 
-- Node.js 18.0.0 ou superior
-- npm ou pnpm
-
-### Instalação
+## Configuração Local
 
 1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/agentes-conversao.git
-   cd agentes-conversao
+   ```
+   git clone https://github.com/seu-usuario/agentes-de-conversao.git
+   cd agentes-de-conversao
    ```
 
 2. Instale as dependências:
-   ```bash
+   ```
    npm install
-   # ou
-   pnpm install
+   pip install -r requirements.txt
    ```
 
 3. Configure as variáveis de ambiente:
-   ```bash
-   cp .env.example .env.local
-   # Edite o arquivo .env.local com suas configurações
    ```
+   cp .env.example .env
+   ```
+   Edite o arquivo `.env` com suas credenciais.
 
-4. Inicie o servidor de desenvolvimento:
-   ```bash
+4. Inicie a aplicação:
+   ```
    npm run dev
-   # ou
-   pnpm dev
    ```
 
-5. Acesse a aplicação em [http://localhost:3000](http://localhost:3000)
+5. Acesse a interface de chat em `http://localhost:8000`.
 
-## Deploy no Railway
+## Implantação no Railway
 
-### Pré-requisitos
-
-- Conta no [Railway](https://railway.app/)
-- CLI do Railway instalada (opcional)
-- Domínio dash.agentesdeconversao.com.br configurado no provedor DNS
-
-### Passos para Deploy
-
-1. Faça login no Railway:
-   ```bash
-   railway login
+1. Configure seu projeto no Railway
+2. Adicione as variáveis de ambiente necessárias:
+   - `OPENAI_API_KEY`
+   - `CHAINLIT_AUTH_SECRET`
+   - `CHAINLIT_API_KEY`
+   - `CHAINLIT_URL`
+3. Implante a aplicação usando:
    ```
-
-2. Inicialize o projeto:
-   ```bash
-   railway init
-   ```
-
-3. Configure as variáveis de ambiente necessárias no dashboard do Railway ou via CLI:
-   ```bash
-   railway vars set NODE_ENV=production NEXT_PUBLIC_APP_URL=https://dash.agentesdeconversao.com.br NEXTAUTH_URL=https://dash.agentesdeconversao.com.br
-   ```
-
-4. Faça deploy da aplicação:
-   ```bash
    railway up
    ```
 
-5. Configure o domínio personalizado no painel do Railway:
-   - No dashboard do Railway, vá para o seu projeto
-   - Clique em "Settings" → "Domains"
-   - Adicione dash.agentesdeconversao.com.br como domínio personalizado
-   - Siga as instruções para configurar os registros DNS necessários (geralmente um registro CNAME)
+## Funcionalidades
 
-6. Verifique o status do SSL/TLS e aguarde a propagação do DNS (pode levar até 48 horas)
+- 💬 **Chat Interativo**: Interface de conversa elegante e responsiva
+- 🤖 **Agentes Personalizados**: Crie agentes específicos para diferentes casos de uso
+- 📊 **Análise de Conversão**: Visualize e analise métricas de desempenho
+- 🔌 **Integrações**: Conecte-se a outras plataformas via API
 
-7. (Alternativa) Configure deploy automático conectando o repositório GitHub no dashboard do Railway
+## Contribuição
 
-## Estrutura do Projeto
-
-```
-agentes-conversao/
-├── .github/                    # Configurações de CI/CD
-├── .husky/                     # Hooks de pré-commit
-├── public/                     # Ativos estáticos
-├── src/
-│   ├── app/                    # Rotas App Router do Next.js 
-│   ├── components/             # Componentes React
-│   │   ├── atoms/              # Componentes básicos
-│   │   ├── molecules/          # Componentes compostos
-│   │   ├── organisms/          # Componentes complexos
-│   │   ├── templates/          # Layouts de página
-│   │   └── ui/                 # Sistema de design
-│   ├── hooks/                  # Hooks personalizados
-│   ├── lib/                    # Funções utilitárias
-│   ├── services/               # Serviços de API
-│   ├── store/                  # Gerenciamento de estado
-│   ├── styles/                 # Configurações CSS
-│   └── types/                  # Definições de tipos
-├── tailwind.config.js          # Configuração do Tailwind
-├── next.config.js              # Configuração do Next.js
-├── tsconfig.json               # Configuração TypeScript
-└── package.json                # Dependências
-```
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
 
 ## Licença
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+Este projeto está licenciado sob a [Licença MIT](LICENSE).

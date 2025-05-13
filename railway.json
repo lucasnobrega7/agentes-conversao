@@ -11,6 +11,10 @@
     "restartPolicyMaxRetries": 10,
     "healthcheckPath": "/api/health",
     "healthcheckTimeout": 10,
-    "domains": ["dash.agentesdeconversao.com.br"]
+    "domains": ["agentesdeconversao.com.br"]
+  },
+  "variables": {
+    "NODE_ENV": "production",
+    "PORT": "3000"
   }
 }

@@ -3,44 +3,40 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "type-check": "tsc --noEmit",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "dev": "concurrently \"node src/api.js\" \"chainlit run app.py --host 0.0.0.0 --port 8000\"",
+    "build": "echo 'Building assets...'",
+    "start": "node src/api.js & chainlit run app.py --host 0.0.0.0 --port 8000",
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md}\""
   },
   "dependencies": {
-    "next": "14.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "@vercel/analytics": "^1.1.1",
-    "zustand": "^4.4.7",
-    "@tanstack/react-query": "^5.14.2",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
-    "lucide-react": "^0.294.0",
-    "react-flow-renderer": "^11.8.3",
-    "recharts": "^2.10.3",
-    "tailwind-merge": "^2.1.0",
-    "date-fns": "^2.30.0",
-    "next-auth": "^4.24.5",
-    "zod": "^3.22.4",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "langchain": "^0.1.4",
+    "openai": "^4.11.0",
     "axios": "^1.6.2",
-    "framer-motion": "^10.16.16"
-  },
-  "devDependencies": {
-    "typescript": "^5.3.3",
-    "@types/react": "^18.2.42",
-    "@types/node": "^20.10.4",
-    "eslint": "^8.55.0",
-    "eslint-config-next": "14.0.3",
-    "prettier": "^3.1.0",
-    "prettier-plugin-tailwindcss": "^0.5.7",
-    "postcss": "^8.4.32",
-    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "tailwindcss": "^3.3.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
-    "@tailwindcss/aspect-ratio": "^0.4.2"
-  }
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0",
+    "nodemon": "^3.0.1",
+    "postcss": "^8.4.32",
+    "autoprefixer": "^10.4.16"
+  },
+  "description": "Plataforma para criação de agentes de IA personalizados para aumento de conversões e automação de processos.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasnobrega7/agentes-conversao.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
 }
