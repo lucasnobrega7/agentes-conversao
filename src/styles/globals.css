@@ -4,124 +4,122 @@
 
 @layer base {
   :root {
-    --header-height: 64px;
-    --sidebar-width: 280px;
-  }
-  
-  /* Configurações para melhor aproximação à tipografia OpenAI */
-  html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
-    letter-spacing: -0.01em;
-  }
-  
-  /* Ajustes na hierarquia tipográfica para se assemelhar ao estilo OpenAI */
-  h1 {
-    @apply text-3xl font-bold leading-tight tracking-tight md:text-4xl lg:text-5xl;
-    letter-spacing: -0.02em;
-  }
-  
-  h2 {
-    @apply text-2xl font-semibold leading-tight tracking-tight md:text-3xl;
-    letter-spacing: -0.015em;
-  }
-  
-  h3 {
-    @apply text-xl font-semibold leading-tight md:text-2xl;
-    letter-spacing: -0.01em;
-  }
-  
-  h4 {
-    @apply text-lg font-medium leading-snug md:text-xl;
-    letter-spacing: -0.005em;
-  }
-  
-  p {
-    @apply leading-relaxed;
-  }
-  
-  /* Estilos de links */
-  a {
-    @apply text-brand-600 transition-colors duration-200 hover:text-brand-700;
-  }
-  
-  /* Estilos de foco para acessibilidade */
-  *:focus-visible {
-    @apply outline-none ring-2 ring-brand-500 ring-offset-2;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
   }
 
-  /* Ajustes para elementos de formulário */
-  input, select, textarea {
-    @apply text-neutral-900;
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
-@layer components {
-  .container-page {
-    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+@layer base {
+  * {
+    @apply border-border;
   }
-  
-  .section-padding {
-    @apply py-12 md:py-16 lg:py-20;
-  }
-  
-  .card {
-    @apply rounded-lg border border-neutral-200 bg-white p-6 shadow-sm transition-all duration-200;
-  }
-  
-  .card-interactive {
-    @apply card hover:border-brand-200 hover:shadow-md;
-  }
-  
-  .nav-link {
-    @apply text-neutral-600 transition-colors duration-200 hover:text-neutral-900;
-  }
-  
-  .nav-link-active {
-    @apply font-medium text-brand-600 hover:text-brand-700;
-  }
-  
-  .btn {
-    @apply inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:opacity-50;
-  }
-  
-  .btn-primary {
-    @apply btn bg-brand-600 text-white hover:bg-brand-700;
-  }
-  
-  .btn-secondary {
-    @apply btn border border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50;
-  }
-
-  .btn-ghost {
-    @apply btn bg-transparent text-neutral-700 hover:bg-neutral-100;
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-@layer utilities {
-  /* Utilitário para truncar texto */
-  .truncate-lines-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+/* Custom Gradient Text */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-gradient-start via-brand-gradient-mid to-brand-gradient-end;
+}
+
+/* Dark mode surface colors */
+.dark .surface-base {
+  @apply bg-[#0e0e10];
+}
+.dark .surface-raised {
+  @apply bg-[#1a1a1d];
+}
+.dark .surface-stroke {
+  @apply border-[#27272a];
+}
+
+/* Animations */
+.card-hover {
+  @apply transition-all duration-200 hover:translate-y-[-2px] hover:scale-[1.01] hover:shadow-medium;
+}
+
+/* Button tactile feedback */
+.btn-tactile {
+  @apply relative overflow-hidden;
+}
+.btn-tactile:after {
+  content: '';
+  @apply absolute top-1/2 left-1/2 w-[5px] h-[5px] bg-white/40 opacity-0 rounded-full transform scale-100 -translate-x-1/2 origin-center;
+}
+.btn-tactile:focus:not(:active)::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
   }
-  
-  /* Scrollbar personalizada */
-  .scrollbar-thin {
-    scrollbar-width: thin;
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.3;
   }
-  
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-neutral-300 hover:bg-neutral-400;
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
   }
 }
