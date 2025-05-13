@@ -1,30 +1,36 @@
-FROM node:18-slim
+FROM python:3.10
 
-# Instalar Python e dependências necessárias
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    python3-venv \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# Instalar Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm@latest
 
 WORKDIR /app
 
-# Copiar os arquivos de configuração do Node.js
+# Copiar os requisitos Python primeiro para aproveitar o cache
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar os arquivos package.json e package-lock.json e instalar dependências
 COPY package*.json ./
+RUN npm ci
 
-# Instalar dependências do Node.js
-RUN npm install
-
-# Copiar os arquivos de configuração do Python
-COPY requirements.txt ./
-RUN pip3 install --no-cache-dir -r requirements.txt
-
-# Copiar o restante dos arquivos do projeto
+# Copiar o resto do projeto
 COPY . .
 
-# Portas expostas
+# Verificar se os arquivos críticos existem
+RUN ls -la && \
+    echo "====== PROJECT STRUCTURE ======" && \
+    find . -type f -name "*.js" | sort && \
+    echo "====== PACKAGE.JSON ======" && \
+    cat package.json && \
+    echo "====== SRC DIRECTORY ======" && \
+    ls -la src/ && \
+    echo "====== APP.PY ======" && \
+    cat app.py
+
+# Expor portas
 EXPOSE 3000 8000
 
-# Comando para iniciar a aplicação
+# Comando para iniciar
 CMD ["npm", "run", "start"]
